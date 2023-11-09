@@ -11,7 +11,7 @@ class DDayDiscountTest {
 
     @ParameterizedTest
     @DisplayName("입력된 날짜에 해당하는 할인 금액을 가져온다.")
-    @CsvSource(value = ["1:1000", "3:1200", "21:3000", "25:3400", "26:0"])
+    @CsvSource(value = ["1:1000", "3:1200", "21:3000", "25:3400", "26:0"], delimiter = ':')
     fun getPriceTest(input: Int, expected: Int) {
         val discountPrice = dDayDiscount.getPrice(input)
         assertThat(discountPrice).isEqualTo(expected)
