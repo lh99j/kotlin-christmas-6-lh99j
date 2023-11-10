@@ -18,5 +18,13 @@ class OutputView {
         menu.forEach { (menu, amount) ->
             println("${menu.name} ${amount}개")
         }
+        println()
+    }
+
+    fun printTotalPrice(order: Order) {
+        val price = String.format("%,d원", order.getTotalPrice())
+        println("<할인 전 총주문 금액>")
+        println(price)
+        println()
     }
 }

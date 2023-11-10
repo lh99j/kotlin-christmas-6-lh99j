@@ -17,6 +17,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         val order = Order(orders)
         outputView.printPreviewMessage()
         outputView.printMenu(order)
+        outputView.printTotalPrice(order)
     }
 
     fun splitInputMenu(inputMenu: List<String>): Map<Menu, Int> {
