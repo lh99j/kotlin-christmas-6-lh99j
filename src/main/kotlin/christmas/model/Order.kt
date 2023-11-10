@@ -1,12 +1,9 @@
 package christmas.model
 
-class Order {
-    private var _menu = mutableListOf<Menu>()
-    val menu: List<Menu>
-        get() = _menu
+class Order(private val menu: Map<Menu, Int>) {
+    init {
+        require(menu.entries.sumOf { it.value } < 20) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+    }
 
-    fun getTotalPrice(): Int = _menu.sumOf { it.price }
-
-    fun addMenu(menu: Menu) = _menu.add(menu)
-
+    fun getTotalPrice(): Int = menu.entries.sumOf { it.key.price * it.value }
 }
