@@ -2,6 +2,7 @@ package christmas.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -16,6 +17,15 @@ class MenuBoardTest {
     fun checkValidMenuTest(input: String) {
         assertThrows<IllegalArgumentException> {
             menuBoard.validateMenu(input)
+        }
+    }
+
+    @Test
+    @DisplayName("입력 메뉴가 음료만 존재하면 예외가 발생한다.")
+    fun validateOrderTest() {
+        val input = mutableSetOf(Menu("제로콜라", 3_000), Menu("레드와인", 60_000))
+        assertThrows<IllegalArgumentException> {
+            menuBoard.validateOrder(input)
         }
     }
 
