@@ -20,16 +20,16 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printTotalPrice(order)
     }
 
-    fun splitInputMenu(inputMenu: List<String>): Map<Menu, Int> {
-        val result = mutableMapOf<Menu, Int>()
+    fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
+        val result: MutableList<MutableMap<Menu, Int>> = MutableList(4) { mutableMapOf() }
 
         inputMenu.forEach {
             val (name, count) = it.split("-")
             menuBoard.validateMenu(name)
             val price = menuBoard.getMenuPrice(name)
-            result[Menu(name, price)] = count.toInt()
+            val category = menuBoard.getFoodCategory(name)
+            result[category][Menu(name, price)] = count.toInt()
         }
-        menuBoard.validateOrder(result.keys)
 
         return result
     }

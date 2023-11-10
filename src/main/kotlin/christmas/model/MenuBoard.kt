@@ -40,11 +40,40 @@ class MenuBoard {
         require(validation) { "error" }
     }
 
-    fun validateOrder(order: MutableSet<Menu>) {
-        require(order.size - foods[3].intersect(order).count() > 0) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
-    }
-
     fun getMenuPrice(name: String): Int {
         return foods.flatten().find { menu -> menu.name == name }!!.price
+    }
+
+    fun getFoodCategory(name: String): Int {
+        val appetizer = isAppetizer(name)
+        val mainFood = isMainFood(name)
+        val dessert = isDessert(name)
+        val drink = isDrink(name)
+        val trueValues = listOf(appetizer, mainFood, dessert, drink).indexOfFirst { it }
+        return trueValues
+    }
+
+    private fun isAppetizer(name: String): Boolean {
+        return foods[0].any { menu ->
+            menu.name == name
+        }
+    }
+
+    private fun isMainFood(name: String): Boolean {
+        return foods[1].any { menu ->
+            menu.name == name
+        }
+    }
+
+    private fun isDessert(name: String): Boolean {
+        return foods[2].any { menu ->
+            menu.name == name
+        }
+    }
+
+    private fun isDrink(name: String): Boolean {
+        return foods[3].any { menu ->
+            menu.name == name
+        }
     }
 }

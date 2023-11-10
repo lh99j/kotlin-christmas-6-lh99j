@@ -15,7 +15,7 @@ class OutputView {
     fun printMenu(order: Order) {
         println("<주문 메뉴>")
         val menu = order.getMenu()
-        menu.forEach { (menu, amount) ->
+        menu.flatMap { it.entries }.forEach { (menu, amount) ->
             println("${menu.name} ${amount}개")
         }
         println()

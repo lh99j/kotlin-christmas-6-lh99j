@@ -20,15 +20,6 @@ class MenuBoardTest {
         }
     }
 
-    @Test
-    @DisplayName("입력 메뉴가 음료만 존재하면 예외가 발생한다.")
-    fun validateOrderTest() {
-        val input = mutableSetOf(Menu("제로콜라", 3_000), Menu("레드와인", 60_000))
-        assertThrows<IllegalArgumentException> {
-            menuBoard.validateOrder(input)
-        }
-    }
-
     @ParameterizedTest
     @DisplayName("입력 메뉴의 가격을 가져온다.")
     @CsvSource(value = ["양송이수프:6000", "해산물파스타:35000", "샴페인:25000"], delimiter = ':')
