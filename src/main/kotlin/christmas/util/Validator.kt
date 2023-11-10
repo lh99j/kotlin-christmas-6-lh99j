@@ -20,9 +20,9 @@ object Validator {
 
     fun validateOrderForm(input: List<String>) {
         input.forEach {
-            val (name, count) = it.split("-")
-            require(name.isNotEmpty() && count.isNotEmpty()) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
-            require(count.toIntOrNull() != null) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            val splitInput = it.split("-")
+            require(splitInput.size == 2) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            require(splitInput[1].toIntOrNull() != null) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
         }
     }
 
