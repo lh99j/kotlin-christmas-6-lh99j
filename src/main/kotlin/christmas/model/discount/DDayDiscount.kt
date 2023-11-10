@@ -1,4 +1,4 @@
-package christmas.model
+package christmas.model.discount
 
 class DDayDiscount(private val dDay: Int) : Discount {
     override fun getPrice(): Int {
