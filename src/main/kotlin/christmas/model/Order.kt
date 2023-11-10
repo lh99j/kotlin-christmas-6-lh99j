@@ -6,4 +6,6 @@ class Order(private val menu: Map<Menu, Int>) {
     }
 
     fun getTotalPrice(): Int = menu.entries.sumOf { it.key.price * it.value }
+
+    fun getMenu(): Map<Menu, Int> = menu
 }

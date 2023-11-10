@@ -15,6 +15,8 @@ class MainController(private val inputView: InputView, private val outputView: O
         val inputMenu = inputView.readOrder()
         val orders = splitInputMenu(inputMenu)
         val order = Order(orders)
+        outputView.printPreviewMessage()
+        outputView.printMenu(order)
     }
 
     fun splitInputMenu(inputMenu: List<String>): Map<Menu, Int> {
