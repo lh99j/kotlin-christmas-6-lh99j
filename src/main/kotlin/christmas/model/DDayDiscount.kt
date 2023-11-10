@@ -1,7 +1,7 @@
 package christmas.model
 
-class DDayDiscount(private val dDay: Int) {
-    fun getPrice(): Int {
+class DDayDiscount(private val dDay: Int) : Discount {
+    override fun getPrice(): Int {
         if (dDay <= 25) {
             val discountPrice = (dDay - 1) * 100 + 1000
             return discountPrice
