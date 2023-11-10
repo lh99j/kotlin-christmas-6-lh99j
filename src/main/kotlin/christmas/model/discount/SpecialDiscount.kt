@@ -3,9 +3,7 @@ package christmas.model.discount
 import christmas.model.Calendar
 
 class SpecialDiscount(private val day: Int) : Discount {
-    override fun getPrice(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getPrice(): Int = 1000
 
     override fun checkTarget(): Boolean {
         val calendar = Calendar()
