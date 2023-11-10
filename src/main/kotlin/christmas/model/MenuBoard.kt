@@ -1,7 +1,7 @@
 package christmas.model
 
 class MenuBoard {
-    private val menuBoard: List<List<Menu>>
+    private val foods: List<List<Menu>>
 
     init {
         val appetizer = listOf(
@@ -28,11 +28,11 @@ class MenuBoard {
             Menu("샴페인", 25_000)
         )
 
-        menuBoard = listOf(appetizer, mainFood, dessert, drink)
+        foods = listOf(appetizer, mainFood, dessert, drink)
     }
 
     fun checkValidMenu(name: String){
-        val validation = menuBoard.any { category ->
+        val validation = foods.any { category ->
             category.any { menu ->
                 menu.name == name
             }
@@ -41,6 +41,6 @@ class MenuBoard {
     }
 
     fun getMenuPrice(name: String): Int {
-        return menuBoard.flatten().find { menu -> menu.name == name }!!.price
+        return foods.flatten().find { menu -> menu.name == name }!!.price
     }
 }
