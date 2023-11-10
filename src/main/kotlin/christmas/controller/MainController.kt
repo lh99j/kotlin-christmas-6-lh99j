@@ -25,10 +25,11 @@ class MainController(private val inputView: InputView, private val outputView: O
 
         inputMenu.forEach {
             val (name, count) = it.split("-")
-            menuBoard.checkValidMenu(name)
+            menuBoard.validateMenu(name)
             val price = menuBoard.getMenuPrice(name)
             result[Menu(name, price)] = count.toInt()
         }
+        menuBoard.validateOrder(result.keys)
 
         return result
     }

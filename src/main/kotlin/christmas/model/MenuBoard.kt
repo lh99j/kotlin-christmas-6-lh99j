@@ -31,13 +31,17 @@ class MenuBoard {
         foods = listOf(appetizer, mainFood, dessert, drink)
     }
 
-    fun checkValidMenu(name: String){
+    fun validateMenu(name: String) {
         val validation = foods.any { category ->
             category.any { menu ->
                 menu.name == name
             }
         }
         require(validation) { "error" }
+    }
+
+    fun validateOrder(order: MutableSet<Menu>) {
+        require(order.size - foods[3].intersect(order).count() > 0) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 
     fun getMenuPrice(name: String): Int {

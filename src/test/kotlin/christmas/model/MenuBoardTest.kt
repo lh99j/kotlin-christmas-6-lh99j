@@ -15,7 +15,7 @@ class MenuBoardTest {
     @ValueSource(strings = ["바나나우유, 초콜릿우유, 초밥"])
     fun checkValidMenuTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuBoard.checkValidMenu(input)
+            menuBoard.validateMenu(input)
         }
     }
 
