@@ -5,7 +5,8 @@ import christmas.model.Order
 
 class WeekdayDisCount(private val order: Order, private val day: Int) : Discount {
     override fun getPrice(): Int {
-        TODO("Not yet implemented")
+        val orderMenu = order.getMenu()
+        return orderMenu[2].size * 2023
     }
 
     override fun checkTarget(): Boolean {
