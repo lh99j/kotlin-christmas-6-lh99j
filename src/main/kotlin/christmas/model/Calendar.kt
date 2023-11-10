@@ -5,5 +5,6 @@ class Calendar {
     private val specialDay = listOf(3, 10, 17, 24, 25, 31)
 
     fun checkWeekend(day: Int): Boolean = weekend.contains(day)
+    fun checkWeekday(day: Int): Boolean = !weekend.contains(day)
     fun checkSpecialDay(day: Int): Boolean = specialDay.contains(day)
 }

@@ -2,8 +2,10 @@ package christmas.model.discount
 
 import christmas.model.Order
 
-class DayDisCount(private val order: Order, private val day: Int) : Discount {
+class GiftDiscount(private val order: Order) : Discount {
     override fun getPrice(): Int {
         TODO("Not yet implemented")
     }
+
+    override fun checkTarget(): Boolean = order.getTotalPrice() > 120000
 }

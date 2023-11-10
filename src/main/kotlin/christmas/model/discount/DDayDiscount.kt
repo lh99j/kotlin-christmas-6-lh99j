@@ -8,4 +8,6 @@ class DDayDiscount(private val dDay: Int) : Discount {
         }
         return 0
     }
+
+    override fun checkTarget(): Boolean = dDay <= 25
 }
