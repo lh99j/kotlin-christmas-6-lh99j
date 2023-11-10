@@ -14,14 +14,14 @@ class MainController(private val inputView: InputView, private val outputView: O
         val date = getDate()
 
         val orders = getOrderMenu()
-        val order = Order(orders)
+        order = Order(orders)
 
         outputView.printPreviewMessage()
         outputView.printMenu(order)
         outputView.printTotalPrice(order)
     }
 
-    fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
+    private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
         val result: MutableList<MutableMap<Menu, Int>> = MutableList(4) { mutableMapOf() }
 
         inputMenu.forEach {
@@ -39,8 +39,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printGreetings()
         while (true) {
             try {
-                val input = inputView.readDate()
-                return input
+                return inputView.readDate()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -51,8 +50,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         while (true) {
             try {
                 val inputMenu = inputView.readOrder()
-                val orders = splitInputMenu(inputMenu)
-                return orders
+                return splitInputMenu(inputMenu)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }

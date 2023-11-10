@@ -1,5 +1,7 @@
 package christmas.model
 
+import christmas.util.Validator.validateMenuName
+
 class MenuBoard {
     private val foods: List<List<Menu>>
 
@@ -32,12 +34,7 @@ class MenuBoard {
     }
 
     fun validateMenu(name: String) {
-        val validation = foods.any { category ->
-            category.any { menu ->
-                menu.name == name
-            }
-        }
-        require(validation) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+        validateMenuName(foods, name)
     }
 
     fun getMenuPrice(name: String): Int {

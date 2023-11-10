@@ -1,8 +1,10 @@
 package christmas.model
 
+import christmas.util.Validator.validateOrderCount
+
 class Order(private val menu: List<Map<Menu, Int>>) {
     init {
-        require(menu.flatMap { it.values }.sum() <= 20) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+        validateOrderCount(menu)
     }
 
     fun getTotalPrice(): Int {
