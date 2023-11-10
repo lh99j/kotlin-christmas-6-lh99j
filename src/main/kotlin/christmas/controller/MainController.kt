@@ -5,16 +5,17 @@ import christmas.model.MenuBoard
 import christmas.model.Order
 import christmas.view.InputView
 import christmas.view.OutputView
+import java.lang.IllegalArgumentException
 
 class MainController(private val inputView: InputView, private val outputView: OutputView) {
     private val menuBoard = MenuBoard()
+    private lateinit var order: Order
     fun run() {
-        outputView.printGreetings()
-        val date = inputView.readDate()
+        val date = getDate()
 
-        val inputMenu = inputView.readOrder()
-        val orders = splitInputMenu(inputMenu)
+        val orders = getOrderMenu()
         val order = Order(orders)
+
         outputView.printPreviewMessage()
         outputView.printMenu(order)
         outputView.printTotalPrice(order)
@@ -32,5 +33,29 @@ class MainController(private val inputView: InputView, private val outputView: O
         }
 
         return result
+    }
+
+    private fun getDate(): Int {
+        outputView.printGreetings()
+        while (true) {
+            try {
+                val input = inputView.readDate()
+                return input
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
+    private fun getOrderMenu(): List<Map<Menu, Int>> {
+        while (true) {
+            try {
+                val inputMenu = inputView.readOrder()
+                val orders = splitInputMenu(inputMenu)
+                return orders
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 }
