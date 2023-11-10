@@ -6,10 +6,8 @@ object Validator {
     fun validateNotNull(input: String) =
         require(input.trim().isNotEmpty()) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
 
-
     fun validateInteger(input: String) =
         require(input.toIntOrNull() != null) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
-
 
     fun validateDateRange(input: String) =
         require(input.toInt() in 1..31) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }

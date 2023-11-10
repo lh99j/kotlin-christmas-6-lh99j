@@ -15,10 +15,7 @@ class MainController(private val inputView: InputView, private val outputView: O
 
         val orders = getOrderMenu()
         order = Order(orders)
-
-        outputView.printPreviewMessage()
-        outputView.printMenu(order)
-        outputView.printTotalPrice(order)
+        printOrder()
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
@@ -55,5 +52,11 @@ class MainController(private val inputView: InputView, private val outputView: O
                 println(e.message)
             }
         }
+    }
+
+    private fun printOrder() {
+        outputView.printPreviewMessage()
+        outputView.printMenu(order)
+        outputView.printTotalPrice(order)
     }
 }

@@ -2,12 +2,14 @@ package christmas.model.discount
 
 import christmas.model.Calendar
 import christmas.model.Order
+import christmas.util.Constants.DESSERT_INDEX
+import christmas.util.Constants.DISCOUNT_PRICE
 
 class WeekdayDiscount(private val order: Order, private val day: Int) : Discount {
     override fun getPrice(): Int {
         val orderMenu = order.getMenu()
-        val totalCount = orderMenu[2].entries.sumOf { it.value }
-        return totalCount * 2023
+        val totalCount = orderMenu[DESSERT_INDEX].entries.sumOf { it.value }
+        return totalCount * DISCOUNT_PRICE
     }
 
     override fun checkTarget(): Boolean {
