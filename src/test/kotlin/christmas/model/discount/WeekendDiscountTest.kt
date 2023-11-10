@@ -24,10 +24,6 @@ class WeekendDiscountTest {
                 Menu("바비큐립", 54_000) to 3,
             ),
             mapOf(
-                Menu("티본스테이크", 55_000) to 2,
-                Menu("바비큐립", 54_000) to 3,
-            ),
-            mapOf(
                 Menu("초코케이크", 15_000) to 1,
                 Menu("아이스크림", 5_000) to 1
             ),
@@ -47,7 +43,7 @@ class WeekendDiscountTest {
 
     @Test
     @DisplayName("총 할인 금액이 올바르게 반환되는지 테스트한다.")
-    fun getPrice(){
+    fun getPrice() {
         weekendDiscount = WeekendDiscount(Order(input), 3)
         Assertions.assertThat(weekendDiscount.getPrice()).isEqualTo(10115)
     }
