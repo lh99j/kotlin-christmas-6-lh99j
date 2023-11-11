@@ -1,8 +1,10 @@
 package christmas.controller
 
+import christmas.model.Benefits
 import christmas.model.Menu
 import christmas.model.MenuBoard
 import christmas.model.Order
+import christmas.util.Constants.DISCOUNT_MIN_PRICE
 import christmas.view.InputView
 import christmas.view.OutputView
 import java.lang.IllegalArgumentException
@@ -10,12 +12,17 @@ import java.lang.IllegalArgumentException
 class MainController(private val inputView: InputView, private val outputView: OutputView) {
     private val menuBoard = MenuBoard()
     private lateinit var order: Order
+    private val benefits = Benefits()
+
     fun run() {
         val date = getDate()
 
         val orders = getOrderMenu()
         order = Order(orders)
         printOrder()
+
+        outputView.printGift(order)
+        
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
