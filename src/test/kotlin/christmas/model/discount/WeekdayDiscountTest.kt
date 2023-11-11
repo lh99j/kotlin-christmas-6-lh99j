@@ -2,6 +2,7 @@ package christmas.model.discount
 
 import christmas.model.Menu
 import christmas.model.Order
+import christmas.model.OrderForm
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -11,24 +12,25 @@ import org.junit.jupiter.params.provider.CsvSource
 
 class WeekdayDiscountTest {
     private lateinit var weekdayDiscount: WeekdayDiscount
-    private lateinit var input: List<Map<Menu, Int>>
+    private lateinit var input: List<List<OrderForm>>
 
     @BeforeEach
     fun setUp() {
         input = listOf(
-            mapOf(
-                Menu("양송이수프", 6_000) to 2
+            listOf(
+                OrderForm(Menu("양송이수프", 6_000), 2),
+                OrderForm(Menu("시저샐러드", 8_000), 1)
             ),
-            mapOf(
-                Menu("티본스테이크", 55_000) to 2,
-                Menu("바비큐립", 54_000) to 3,
+            listOf(
+                OrderForm(Menu("티본스테이크", 55_000), 2),
+                OrderForm(Menu("해산물파스타", 35_000), 2)
             ),
-            mapOf(
-                Menu("초코케이크", 15_000) to 1,
-                Menu("아이스크림", 5_000) to 1
+            listOf(
+                OrderForm(Menu("아이스크림", 5_000), 2),
+                OrderForm(Menu("초코케이크", 15_000), 1)
             ),
-            mapOf(
-                Menu("제로콜라", 3_000) to 1,
+            listOf(
+                OrderForm(Menu("샴페인", 25_000), 1)
             )
         )
     }
@@ -45,7 +47,7 @@ class WeekdayDiscountTest {
     @DisplayName("총 할인 금액이 올바르게 반환되는지 테스트한다.")
     fun getPrice() {
         weekdayDiscount = WeekdayDiscount(Order(input), 3)
-        assertThat(weekdayDiscount.getPrice()).isEqualTo(4046)
+        assertThat(weekdayDiscount.getPrice()).isEqualTo(6069)
     }
 
 }

@@ -1,6 +1,8 @@
 package christmas.util
 
 import christmas.model.Menu
+import christmas.model.Order
+import christmas.model.OrderForm
 import christmas.util.Validator.validateDateRange
 import christmas.util.Validator.validateInteger
 import christmas.util.Validator.validateMenuName
@@ -9,6 +11,7 @@ import christmas.util.Validator.validateOrderCount
 import christmas.util.Validator.validateOrderForm
 import christmas.util.Validator.validateOrderNotNull
 import christmas.util.Validator.validateUniqueOrder
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -17,6 +20,30 @@ import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class ValidatorTest {
+    private lateinit var order: Order
+
+    @BeforeEach
+    fun setUp() {
+        val input = listOf(
+            listOf(
+                OrderForm(Menu("양송이수프", 6_000), 2),
+                OrderForm(Menu("시저샐러드", 8_000), 1)
+            ),
+            listOf(
+                OrderForm(Menu("티본스테이크", 55_000), 2),
+                OrderForm(Menu("해산물파스타", 35_000), 2)
+            ),
+            listOf(
+                OrderForm(Menu("아이스크림", 5_000), 2),
+                OrderForm(Menu("초코케이크", 15_000), 1)
+            ),
+            listOf(
+                OrderForm(Menu("샴페인", 25_000), 1)
+            )
+        )
+        order = Order(input)
+    }
+
     @ParameterizedTest
     @DisplayName("공백이나 널값을 입력하면 예외가 발생한다.")
     @ValueSource(strings = ["", " ", "   "])
@@ -54,12 +81,12 @@ class ValidatorTest {
         }
     }
 
-    @ParameterizedTest
+    @Test
     @DisplayName("리스트에 중복이 있다면 예외가 발생한다.")
-    @CsvSource(value = ["abc,abc,d", "1,1,3", "lh99j,5,lh99j"], delimiter = ',')
-    fun validateUniqueOrderTest(input1: String, input2: String, input3: String) {
+    fun validateUniqueOrderTest() {
         assertThrows<IllegalArgumentException> {
-            validateUniqueOrder(listOf(input1, input2, input3))
+            makeDuplicateOrder()
+            validateUniqueOrder(order.getMenu())
         }
     }
 
@@ -75,19 +102,41 @@ class ValidatorTest {
 
     @Test
     @DisplayName("주문 합계가 20이 넘어가면 예외가 발생한다.")
-    fun validateOrderCountTest(){
-        val input = listOf(mapOf(Menu("티본스테이크", 55_000) to 21))
+    fun validateOrderCountTest() {
         assertThrows<IllegalArgumentException> {
-            validateOrderCount(input)
+            makeMaxCountOver()
+            validateOrderCount(order.getMenu())
         }
     }
 
     @Test
     @DisplayName("메뉴판에 없는 메뉴가 입력되면 예외가 발생한다.")
-    fun validateMenuNameTest(){
+    fun validateMenuNameTest() {
         val input = listOf(listOf(Menu("티본스테이크", 55_000)))
         assertThrows<IllegalArgumentException> {
             validateMenuName(input, "초밥")
         }
+    }
+
+    fun makeDuplicateOrder() {
+        val input = listOf(
+            listOf(),
+            listOf(),
+            listOf(
+                OrderForm(Menu("시저샐러드", 8_000), 1),
+                OrderForm(Menu("시저샐러드", 8_000), 2)
+            ),
+            listOf()
+        )
+        order = Order(input)
+    }
+
+    fun makeMaxCountOver() {
+        val input = listOf(
+            listOf(
+                OrderForm(Menu("시저샐러드", 8_000), 21)
+            )
+        )
+        order = Order(input)
     }
 }
