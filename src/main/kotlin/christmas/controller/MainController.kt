@@ -4,6 +4,7 @@ import christmas.model.Benefits
 import christmas.model.Menu
 import christmas.model.MenuBoard
 import christmas.model.Order
+import christmas.model.discount.*
 import christmas.util.Constants.DISCOUNT_MIN_PRICE
 import christmas.view.InputView
 import christmas.view.OutputView
@@ -13,16 +14,17 @@ class MainController(private val inputView: InputView, private val outputView: O
     private val menuBoard = MenuBoard()
     private lateinit var order: Order
     private val benefits = Benefits()
+    var date = 0
 
     fun run() {
-        val date = getDate()
+        date = getDate()
 
         val orders = getOrderMenu()
         order = Order(orders)
         printOrder()
 
         outputView.printGift(order)
-        
+        calculateDiscount()
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
@@ -65,5 +67,60 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printPreviewMessage()
         outputView.printMenu(order)
         outputView.printTotalPrice(order)
+    }
+
+    private fun calculateDiscount() {
+        if (order.getTotalPrice() >= DISCOUNT_MIN_PRICE) {
+            calculateDDayDiscount()
+            calculateWeekdayDiscount()
+            calculateWeekendDiscount()
+            calculateSpecialDiscount()
+            calculateGiftDiscount()
+        }
+    }
+
+    private fun calculateDDayDiscount() {
+        val dDayDiscount = DDayDiscount(date)
+        val valid = dDayDiscount.checkTarget()
+        if (valid) {
+            val price = dDayDiscount.getPrice()
+            benefits.addHistory(0, price)
+        }
+    }
+
+    private fun calculateWeekdayDiscount() {
+        val weekdayDiscount = WeekdayDiscount(order, date)
+        val valid = weekdayDiscount.checkTarget()
+        if (valid) {
+            val price = weekdayDiscount.getPrice()
+            benefits.addHistory(1, price)
+        }
+    }
+
+    private fun calculateWeekendDiscount() {
+        val weekendDiscount = WeekendDiscount(order, date)
+        val valid = weekendDiscount.checkTarget()
+        if (valid) {
+            val price = weekendDiscount.getPrice()
+            benefits.addHistory(2, price)
+        }
+    }
+
+    private fun calculateSpecialDiscount() {
+        val specialDiscount = SpecialDiscount(date)
+        val valid = specialDiscount.checkTarget()
+        if (valid) {
+            val price = specialDiscount.getPrice()
+            benefits.addHistory(3, price)
+        }
+    }
+
+    private fun calculateGiftDiscount() {
+        val giftDiscount = GiftDiscount(order)
+        val valid = giftDiscount.checkTarget()
+        if (valid) {
+            val price = giftDiscount.getPrice()
+            benefits.addHistory(4, price)
+        }
     }
 }
