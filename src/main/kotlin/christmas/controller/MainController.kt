@@ -81,56 +81,19 @@ class MainController(private val inputView: InputView, private val outputView: O
 
     private fun calculateDiscount() {
         if (order.getTotalPrice() >= DISCOUNT_MIN_PRICE) {
-            calculateDDayDiscount()
-            calculateWeekdayDiscount()
-            calculateWeekendDiscount()
-            calculateSpecialDiscount()
-            calculateGiftDiscount()
+            calculateDiscount(DDayDiscount(date), DDAY_DISCOUNT)
+            calculateDiscount(WeekdayDiscount(order, date), WEEKDAY_DISCOUNT)
+            calculateDiscount(WeekendDiscount(order, date), WEEKEND_DISCOUNT)
+            calculateDiscount(SpecialDiscount(date), SPECIAL_DISCOUNT)
+            calculateDiscount(GiftDiscount(order), GIFT_DISCOUNT)
         }
     }
 
-    private fun calculateDDayDiscount() {
-        val dDayDiscount = DDayDiscount(date)
-        val valid = dDayDiscount.checkTarget()
+    private fun calculateDiscount(discount: Discount, discountType: String) {
+        val valid = discount.checkTarget()
         if (valid) {
-            val price = dDayDiscount.getPrice()
-            benefits.addHistory(DDAY_DISCOUNT, price)
-        }
-    }
-
-    private fun calculateWeekdayDiscount() {
-        val weekdayDiscount = WeekdayDiscount(order, date)
-        val valid = weekdayDiscount.checkTarget()
-        if (valid) {
-            val price = weekdayDiscount.getPrice()
-            benefits.addHistory(WEEKDAY_DISCOUNT, price)
-        }
-    }
-
-    private fun calculateWeekendDiscount() {
-        val weekendDiscount = WeekendDiscount(order, date)
-        val valid = weekendDiscount.checkTarget()
-        if (valid) {
-            val price = weekendDiscount.getPrice()
-            benefits.addHistory(WEEKEND_DISCOUNT, price)
-        }
-    }
-
-    private fun calculateSpecialDiscount() {
-        val specialDiscount = SpecialDiscount(date)
-        val valid = specialDiscount.checkTarget()
-        if (valid) {
-            val price = specialDiscount.getPrice()
-            benefits.addHistory(SPECIAL_DISCOUNT, price)
-        }
-    }
-
-    private fun calculateGiftDiscount() {
-        val giftDiscount = GiftDiscount(order)
-        val valid = giftDiscount.checkTarget()
-        if (valid) {
-            val price = giftDiscount.getPrice()
-            benefits.addHistory(GIFT_DISCOUNT, price)
+            val price = discount.getPrice()
+            benefits.addHistory(discountType, price)
         }
     }
 
