@@ -5,7 +5,12 @@ import christmas.model.Menu
 import christmas.model.MenuBoard
 import christmas.model.Order
 import christmas.model.discount.*
+import christmas.util.Constants.DDAY_DISCOUNT
 import christmas.util.Constants.DISCOUNT_MIN_PRICE
+import christmas.util.Constants.GIFT_DISCOUNT
+import christmas.util.Constants.SPECIAL_DISCOUNT
+import christmas.util.Constants.WEEKDAY_DISCOUNT
+import christmas.util.Constants.WEEKEND_DISCOUNT
 import christmas.view.InputView
 import christmas.view.OutputView
 import java.lang.IllegalArgumentException
@@ -17,7 +22,7 @@ class MainController(private val inputView: InputView, private val outputView: O
     var date = 0
 
     fun run() {
-        date = getDate()
+        date = readTodayDate()
 
         val orders = getOrderMenu()
         order = Order(orders)
@@ -25,6 +30,7 @@ class MainController(private val inputView: InputView, private val outputView: O
 
         outputView.printGift(order)
         calculateDiscount()
+        outputView.printBenefits(benefits)
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
@@ -41,7 +47,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         return result
     }
 
-    private fun getDate(): Int {
+    private fun readTodayDate(): Int {
         outputView.printGreetings()
         while (true) {
             try {
@@ -84,7 +90,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         val valid = dDayDiscount.checkTarget()
         if (valid) {
             val price = dDayDiscount.getPrice()
-            benefits.addHistory(0, price)
+            benefits.addHistory(DDAY_DISCOUNT, price)
         }
     }
 
@@ -93,7 +99,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         val valid = weekdayDiscount.checkTarget()
         if (valid) {
             val price = weekdayDiscount.getPrice()
-            benefits.addHistory(1, price)
+            benefits.addHistory(WEEKDAY_DISCOUNT, price)
         }
     }
 
@@ -102,7 +108,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         val valid = weekendDiscount.checkTarget()
         if (valid) {
             val price = weekendDiscount.getPrice()
-            benefits.addHistory(2, price)
+            benefits.addHistory(WEEKEND_DISCOUNT, price)
         }
     }
 
@@ -111,7 +117,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         val valid = specialDiscount.checkTarget()
         if (valid) {
             val price = specialDiscount.getPrice()
-            benefits.addHistory(3, price)
+            benefits.addHistory(SPECIAL_DISCOUNT, price)
         }
     }
 
@@ -120,7 +126,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         val valid = giftDiscount.checkTarget()
         if (valid) {
             val price = giftDiscount.getPrice()
-            benefits.addHistory(4, price)
+            benefits.addHistory(GIFT_DISCOUNT, price)
         }
     }
 }
