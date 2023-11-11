@@ -15,5 +15,4 @@ class Benefits {
 
     fun getTotalDiscount(): Int =
         _history.values.sum() - _history.getOrDefault(GIFT_DISCOUNT, 0)
-
 }

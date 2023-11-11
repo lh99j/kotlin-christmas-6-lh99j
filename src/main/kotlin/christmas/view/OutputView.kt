@@ -24,30 +24,26 @@ class OutputView {
     }
 
     fun printTotalPrice(order: Order) {
-        val price = String.format("%,d원", order.getTotalPrice())
+        val price = order.getTotalPrice()
         println("<할인 전 총주문 금액>")
-        println(price)
+        println(price.formatWithoutSign())
         println()
     }
 
     fun printGift(order: Order) {
         val price = order.getTotalPrice()
         println("<증정 메뉴>")
-        if (price >= 120_000) {
-            println("샴페인 1개")
-        } else {
-            println("없음")
-        }
+        println(if (price >= 120_000) "샴페인 1개" else "없음")
         println()
     }
 
     fun printBenefits(benefits: Benefits) {
         println("<혜택 내역>")
-        benefits.history.forEach { (type, price) ->
-            println("${type}: ${price.formatWithSign()}")
-        }
         if (benefits.history.isEmpty()) {
             println("없음")
+        }
+        benefits.history.forEach { (type, price) ->
+            println("${type}: ${price.formatWithSign()}")
         }
         println()
     }
