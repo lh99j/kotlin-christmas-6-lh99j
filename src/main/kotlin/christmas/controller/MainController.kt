@@ -36,15 +36,15 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printBadgeType(Badge.getType(totalBenefits))
     }
 
-    private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
-        val result: MutableList<MutableMap<Menu, Int>> = MutableList(4) { mutableMapOf() }
+    private fun splitInputMenu(inputMenu: List<String>): List<List<OrderForm>> {
+        val result: MutableList<MutableList<OrderForm>> = MutableList(4) { mutableListOf() }
 
         inputMenu.forEach {
             val (name, count) = it.split("-")
             menuBoard.validateMenu(name)
             val price = menuBoard.getMenuPrice(name)
             val category = menuBoard.getFoodCategory(name)
-            result[category][Menu(name, price)] = count.toInt()
+            result[category].add(OrderForm(Menu(name, price), count.toInt()))
         }
 
         return result
