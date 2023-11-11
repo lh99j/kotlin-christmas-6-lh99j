@@ -1,6 +1,11 @@
 package christmas.util
 
 import christmas.model.Menu
+import christmas.util.Constants.COUNT_INDEX
+import christmas.util.Constants.MAX_DATE
+import christmas.util.Constants.MAX_ORDER_COUNT
+import christmas.util.Constants.MIN_DATE
+import christmas.util.Constants.SPLIT_SIZE
 
 object Validator {
     fun validateNotNull(input: String) =
@@ -10,7 +15,7 @@ object Validator {
         require(input.toIntOrNull() != null) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
 
     fun validateDateRange(input: String) =
-        require(input.toInt() in 1..31) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
+        require(input.toInt() in MIN_DATE..MAX_DATE) { "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요." }
 
     fun validateOrderNotNull(input: List<String>) =
         require(input.all { it.trim().isNotEmpty() }) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
@@ -21,13 +26,13 @@ object Validator {
     fun validateOrderForm(input: List<String>) {
         input.forEach {
             val splitInput = it.split("-")
-            require(splitInput.size == 2) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
-            require(splitInput[1].toIntOrNull() != null) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            require(splitInput.size == SPLIT_SIZE) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+            require(splitInput[COUNT_INDEX].toIntOrNull() != null) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
         }
     }
 
     fun validateOrderCount(input: List<Map<Menu, Int>>) {
-        require(input.flatMap { it.values }.sum() <= 20) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+        require(input.flatMap { it.values }.sum() <= MAX_ORDER_COUNT) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 
     fun validateMenuName(foods: List<List<Menu>>, input: String) {

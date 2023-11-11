@@ -18,4 +18,9 @@ object Constants {
     const val WEEKEND_DISCOUNT = "주말 할인"
     const val SPECIAL_DISCOUNT = "특별 할인"
     const val GIFT_DISCOUNT = "증정 이벤트"
+    const val MIN_DATE = 1
+    const val MAX_DATE = 31
+    const val MAX_ORDER_COUNT = 20
+    const val SPLIT_SIZE = 2
+    const val COUNT_INDEX = 1
 }
