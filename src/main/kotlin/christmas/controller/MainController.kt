@@ -14,14 +14,16 @@ import java.lang.IllegalArgumentException
 
 class MainController(private val inputView: InputView, private val outputView: OutputView) {
     private val menuBoard = MenuBoard()
-    private lateinit var order: Order
     private val benefits = Benefits()
-    var date = 0
+    private val order: Order
+    private val date: Int
+
+    init {
+        date = readTodayDate()
+        order = getOrderMenu()
+    }
 
     fun run() {
-        date = readTodayDate()
-
-        order = getOrderMenu()
         printOrder()
 
         outputView.printGift(order)
