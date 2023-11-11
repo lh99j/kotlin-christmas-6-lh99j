@@ -8,4 +8,6 @@ class Benefits {
     fun addHistory(type: String, price: Int) {
         _history[type] = _history.getOrDefault(type, 0) + price
     }
+
+    fun getTotalBenefit(): Int = _history.entries.sumOf { it.value }
 }
