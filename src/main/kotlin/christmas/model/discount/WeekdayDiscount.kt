@@ -8,7 +8,7 @@ import christmas.util.Constants.DISCOUNT_PRICE
 class WeekdayDiscount(private val order: Order, private val day: Int) : Discount {
     override fun getPrice(): Int {
         val orderMenu = order.getMenu()
-        val totalCount = orderMenu[DESSERT_INDEX].entries.sumOf { it.value }
+        val totalCount = orderMenu[DESSERT_INDEX].sumOf { it.count }
         return totalCount * DISCOUNT_PRICE
     }
 
