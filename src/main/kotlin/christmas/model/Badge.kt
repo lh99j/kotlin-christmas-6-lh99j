@@ -1,14 +1,12 @@
 package christmas.model
 
-class Badge {
-    private val type = listOf("없음", "별", "트리", "산타")
+enum class Badge(private val type: String, private val price: Int) {
+    SANTA("산타", 20_000),
+    TREE("트리", 10_000),
+    STAR("별", 5_000),
+    NOTHING("없음", 0);
 
-    fun getType(price: Int): String {
-        return when {
-            price >= 20000 -> type[3]
-            price >= 10000 -> type[2]
-            price >= 5000 -> type[1]
-            else -> type[0]
-        }
+    companion object {
+        fun getType(price: Int): String = values().first { price > it.price }.type
     }
 }

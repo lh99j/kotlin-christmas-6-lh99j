@@ -32,9 +32,8 @@ class MainController(private val inputView: InputView, private val outputView: O
         val finalPrice = getPriceAfterDiscount()
         outputView.printPriceAfterDiscount(finalPrice)
 
-        val badge = Badge()
-        val badgeType = badge.getType(benefits.getTotalBenefit())
-        outputView.printBadgeType(badgeType)
+        val totalBenefits = benefits.getTotalBenefit()
+        outputView.printBadgeType(Badge.getType(totalBenefits))
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
