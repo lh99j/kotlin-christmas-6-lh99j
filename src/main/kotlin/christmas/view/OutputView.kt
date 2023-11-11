@@ -43,13 +43,23 @@ class OutputView {
 
     fun printBenefits(benefits: Benefits) {
         println("<혜택 내역>")
-        benefits.history.forEach {
-            val price = String.format("-%,d원", it.value)
-            println("${it.key}: $price")
+        benefits.history.forEach { type, price ->
+            val priceForm = String.format("-%,d원", price)
+            println("${type}: $priceForm")
         }
         if (benefits.history.isEmpty()) {
             println("없음")
         }
         println()
+    }
+
+    fun printTotalBenefits(benefits: Benefits) {
+        println("<총혜택 금액>")
+        if (benefits.getTotalBenefit() > 0) {
+            val priceForm = String.format("-%,d원", benefits.getTotalBenefit())
+            println(priceForm)
+        } else {
+            println("0원")
+        }
     }
 }

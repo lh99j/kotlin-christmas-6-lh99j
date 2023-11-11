@@ -31,6 +31,7 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printGift(order)
         calculateDiscount()
         outputView.printBenefits(benefits)
+        outputView.printTotalBenefits(benefits)
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
