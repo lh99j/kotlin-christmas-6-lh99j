@@ -27,7 +27,6 @@ class InputView {
         val input = userInput().split(",")
 
         validateOrderNotNull(input)
-        validateUniqueOrder(input)
         validateOrderForm(input)
 
         return input

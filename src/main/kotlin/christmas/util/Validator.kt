@@ -22,9 +22,6 @@ object Validator {
     fun validateOrderNotNull(input: List<String>) =
         require(input.all { it.trim().isNotEmpty() }) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
 
-    fun validateUniqueOrder(input: List<String>) =
-        require(input.toSet().size == input.size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
-
     fun validateOrderForm(input: List<String>) {
         input.forEach {
             val splitInput = it.split("-")
@@ -48,5 +45,11 @@ object Validator {
 
     fun validateNotOnlyDrink(menu: List<List<OrderForm>>) {
         require(menu.flatten().size != menu[DRINK_INDEX].size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+    }
+
+    fun validateUniqueOrder(menu: List<List<OrderForm>>) {
+        require(
+            menu.flatten().distinctBy { it.menu.name }.size == menu.flatten().size
+        ) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 }
