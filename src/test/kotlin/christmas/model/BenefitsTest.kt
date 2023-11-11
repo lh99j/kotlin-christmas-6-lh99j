@@ -1,6 +1,5 @@
 package christmas.model
 
-import christmas.model.Benefits
 import christmas.util.Constants.DDAY_DISCOUNT
 import christmas.util.Constants.GIFT_DISCOUNT
 import christmas.util.Constants.SPECIAL_DISCOUNT
@@ -39,8 +38,8 @@ class BenefitsTest {
     @ParameterizedTest
     @DisplayName("증정 할인을 뺀 금액을 잘 가져오는지 확인한다.")
     @CsvSource(
-        value = ["$DDAY_DISCOUNT,200_000,$GIFT_DISCOUNT,25_000,175_000",
-            "$WEEKEND_DISCOUNT,120_000,$GIFT_DISCOUNT,25_000,95_000"], delimiter = ','
+        value = ["$DDAY_DISCOUNT,200_000,$GIFT_DISCOUNT,25_000,200_000",
+            "$WEEKEND_DISCOUNT,120_000,$GIFT_DISCOUNT,25_000,120_000"], delimiter = ','
     )
     fun getTotalDiscountTest(type1: String, price1: Int, type2: String, price2: Int, expected: Int) {
         benefits.addHistory(type1, price1)

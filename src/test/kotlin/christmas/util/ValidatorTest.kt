@@ -1,8 +1,8 @@
 package christmas.util
 
-import christmas.model.Menu
+import christmas.model.data.Menu
 import christmas.model.Order
-import christmas.model.OrderForm
+import christmas.model.data.OrderForm
 import christmas.util.Validator.validateDateRange
 import christmas.util.Validator.validateInteger
 import christmas.util.Validator.validateMenuName
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class ValidatorTest {

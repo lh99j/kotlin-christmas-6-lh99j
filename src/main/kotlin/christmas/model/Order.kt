@@ -1,5 +1,6 @@
 package christmas.model
 
+import christmas.model.data.OrderForm
 import christmas.util.Validator.validateNotOnlyDrink
 import christmas.util.Validator.validateOrderCount
 import christmas.util.Validator.validateUniqueOrder

@@ -1,8 +1,8 @@
 package christmas.model.discount
 
-import christmas.model.Menu
+import christmas.model.data.Menu
 import christmas.model.Order
-import christmas.model.OrderForm
+import christmas.model.data.OrderForm
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName

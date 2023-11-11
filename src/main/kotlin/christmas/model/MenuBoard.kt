@@ -1,5 +1,6 @@
 package christmas.model
 
+import christmas.model.data.Menu
 import christmas.util.Constants.APPETIZER_INDEX
 import christmas.util.Constants.DESSERT_INDEX
 import christmas.util.Constants.DRINK_INDEX

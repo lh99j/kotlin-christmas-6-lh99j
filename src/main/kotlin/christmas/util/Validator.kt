@@ -1,7 +1,7 @@
 package christmas.util
 
-import christmas.model.Menu
-import christmas.model.OrderForm
+import christmas.model.data.Menu
+import christmas.model.data.OrderForm
 import christmas.util.Constants.COUNT_INDEX
 import christmas.util.Constants.DRINK_INDEX
 import christmas.util.Constants.MAX_DATE

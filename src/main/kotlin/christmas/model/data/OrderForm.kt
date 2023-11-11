@@ -1,4 +1,4 @@
-package christmas.model
+package christmas.model.data
 
 data class OrderForm(
     val menu: Menu,

@@ -1,5 +1,7 @@
 package christmas.model
 
+import christmas.model.data.Menu
+import christmas.model.data.OrderForm
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

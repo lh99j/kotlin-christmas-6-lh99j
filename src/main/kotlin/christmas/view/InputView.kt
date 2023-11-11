@@ -6,7 +6,6 @@ import christmas.util.Validator.validateInteger
 import christmas.util.Validator.validateNotNull
 import christmas.util.Validator.validateOrderForm
 import christmas.util.Validator.validateOrderNotNull
-import christmas.util.Validator.validateUniqueOrder
 
 class InputView {
     private fun userInput(): String = Console.readLine()
