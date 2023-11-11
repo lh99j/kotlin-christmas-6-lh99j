@@ -1,5 +1,9 @@
 package christmas.model
 
+import christmas.util.Constants.APPETIZER_INDEX
+import christmas.util.Constants.DESSERT_INDEX
+import christmas.util.Constants.DRINK_INDEX
+import christmas.util.Constants.MAIN_FOOD_INDEX
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -25,5 +29,12 @@ class MenuBoardTest {
     @CsvSource(value = ["양송이수프:6000", "해산물파스타:35000", "샴페인:25000"], delimiter = ':')
     fun getMenuPriceTest(input: String, expected: Int) {
         assertThat(menuBoard.getMenuPrice(input)).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력 메뉴의 카테고리를 가져온다.")
+    @CsvSource(value = ["양송이수프:$APPETIZER_INDEX", "해산물파스타:$MAIN_FOOD_INDEX", "샴페인:$DRINK_INDEX", "초코케이크:$DESSERT_INDEX"], delimiter = ':')
+    fun getFoodCategoryTest(input: String, expected: Int) {
+        assertThat(menuBoard.getFoodCategory(input)).isEqualTo(expected)
     }
 }
