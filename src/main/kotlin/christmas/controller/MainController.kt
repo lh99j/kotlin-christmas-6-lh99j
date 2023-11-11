@@ -1,9 +1,6 @@
 package christmas.controller
 
-import christmas.model.Benefits
-import christmas.model.Menu
-import christmas.model.MenuBoard
-import christmas.model.Order
+import christmas.model.*
 import christmas.model.discount.*
 import christmas.util.Constants.DDAY_DISCOUNT
 import christmas.util.Constants.DISCOUNT_MIN_PRICE
@@ -32,8 +29,13 @@ class MainController(private val inputView: InputView, private val outputView: O
         calculateDiscount()
         outputView.printBenefits(benefits)
         outputView.printTotalBenefits(benefits)
+
         val finalPrice = getPriceAfterDiscount()
         outputView.printPriceAfterDiscount(finalPrice)
+
+        val badge = Badge()
+        val badgeType = badge.getType(benefits.getTotalBenefit())
+        outputView.printBadgeType(badgeType)
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {

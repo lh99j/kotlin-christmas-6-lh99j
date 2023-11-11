@@ -62,6 +62,12 @@ class OutputView {
     fun printPriceAfterDiscount(price: Int) {
         println("<할인 후 예상 결제 금액>")
         println(price.formatWithoutSign())
+        println()
+    }
+
+    fun printBadgeType(type: String) {
+        println("<12월 이벤트 배지>")
+        println(type)
     }
 
     private fun Int.formatWithSign(): String = String.format("-%,d원", this)
