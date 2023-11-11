@@ -1,12 +1,12 @@
 package christmas.model
 
-import christmas.util.Validator.validateOrder
+import christmas.util.Validator.validateNotOnlyDrink
 import christmas.util.Validator.validateOrderCount
 
 class Order(private val menu: List<List<OrderForm>>) {
     init {
-//        validateOrderCount(menu)
-//        validateOrder(menu)
+        validateOrderCount(menu)
+        validateNotOnlyDrink(menu)
     }
 
     fun getTotalPrice(): Int {

@@ -1,6 +1,7 @@
 package christmas.util
 
 import christmas.model.Menu
+import christmas.model.OrderForm
 import christmas.util.Constants.COUNT_INDEX
 import christmas.util.Constants.DRINK_INDEX
 import christmas.util.Constants.MAX_DATE
@@ -32,8 +33,8 @@ object Validator {
         }
     }
 
-    fun validateOrderCount(input: List<Map<Menu, Int>>) {
-        require(input.flatMap { it.values }.sum() <= MAX_ORDER_COUNT) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+    fun validateOrderCount(input: List<List<OrderForm>>) {
+        require(input.flatten().sumOf { it.count } <= MAX_ORDER_COUNT) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 
     fun validateMenuName(foods: List<List<Menu>>, input: String) {
@@ -45,7 +46,7 @@ object Validator {
         require(validation) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 
-    fun validateOrder(menu: List<Map<Menu, Int>>) {
-        require(menu.flatMap { it.entries }.size != menu[DRINK_INDEX].size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+    fun validateNotOnlyDrink(menu: List<List<OrderForm>>) {
+        require(menu.flatten().size != menu[DRINK_INDEX].size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 }
