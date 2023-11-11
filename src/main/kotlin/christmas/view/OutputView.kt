@@ -44,7 +44,7 @@ class OutputView {
     fun printBenefits(benefits: Benefits) {
         println("<혜택 내역>")
         benefits.history.forEach { (type, price) ->
-            println("${type}: ${price.format()}")
+            println("${type}: ${price.formatWithSign()}")
         }
         if (benefits.history.isEmpty()) {
             println("없음")
@@ -55,14 +55,16 @@ class OutputView {
     fun printTotalBenefits(benefits: Benefits) {
         println("<총혜택 금액>")
         val totalBenefits = benefits.getTotalBenefit()
-        println(if (totalBenefits > 0) totalBenefits.format() else "0원")
+        println(if (totalBenefits > 0) totalBenefits.formatWithSign() else "0원")
         println()
     }
 
     fun printPriceAfterDiscount(price: Int) {
         println("<할인 후 예상 결제 금액>")
-        println(if (price > 0) price.format() else "0원")
+        println(price.formatWithoutSign())
     }
 
-    private fun Int.format(): String = String.format("%,d", this)
+    private fun Int.formatWithSign(): String = String.format("-%,d원", this)
+    private fun Int.formatWithoutSign(): String = String.format("%,d원", this)
+
 }
