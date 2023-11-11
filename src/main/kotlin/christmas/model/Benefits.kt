@@ -1,9 +1,11 @@
 package christmas.model
 
 class Benefits {
-    private var history = MutableList(5) { 0 }
+    private var _history = mutableMapOf<String, Int>()
+    val history: Map<String, Int>
+        get() = _history
 
-    fun addHistory(benefits: Int, price: Int) {
-        history[benefits] += price
+    fun addHistory(type: String, price: Int) {
+        _history[type] = _history.getOrDefault(type, 0) + price
     }
 }

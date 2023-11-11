@@ -13,9 +13,9 @@ object Constants {
     const val DISCOUNT_MIN_PRICE = 10_000
     const val INCREASE_PRICE = 100
     const val EVENT_END_DAY = 26
-    const val DDAY_DISCOUNT_INDEX = 0
-    const val WEEKDAY_DISCOUNT_INDEX = 1
-    const val WEEKEND_DISCOUNT_INDEX = 2
-    const val SPECIAL_DISCOUNT_INDEX = 3
-    const val GIFT_DISCOUNT_INDEX = 4
+    const val DDAY_DISCOUNT = "크리스마스 디데이 할인"
+    const val WEEKDAY_DISCOUNT = "평일 할인"
+    const val WEEKEND_DISCOUNT = "주말 할인"
+    const val SPECIAL_DISCOUNT = "특별 할인"
+    const val GIFT_DISCOUNT = "증정 이벤트"
 }

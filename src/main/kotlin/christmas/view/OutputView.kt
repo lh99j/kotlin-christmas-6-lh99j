@@ -1,5 +1,6 @@
 package christmas.view
 
+import christmas.model.Benefits
 import christmas.model.Order
 
 class OutputView {
@@ -35,6 +36,18 @@ class OutputView {
         if (price >= 120_000) {
             println("샴페인 1개")
         } else {
+            println("없음")
+        }
+        println()
+    }
+
+    fun printBenefits(benefits: Benefits) {
+        println("<혜택 내역>")
+        benefits.history.forEach {
+            val price = String.format("-%,d원", it.value)
+            println("${it.key}: $price")
+        }
+        if (benefits.history.isEmpty()) {
             println("없음")
         }
         println()
