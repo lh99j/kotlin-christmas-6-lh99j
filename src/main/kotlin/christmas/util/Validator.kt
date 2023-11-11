@@ -2,6 +2,7 @@ package christmas.util
 
 import christmas.model.Menu
 import christmas.util.Constants.COUNT_INDEX
+import christmas.util.Constants.DRINK_INDEX
 import christmas.util.Constants.MAX_DATE
 import christmas.util.Constants.MAX_ORDER_COUNT
 import christmas.util.Constants.MIN_DATE
@@ -42,5 +43,9 @@ object Validator {
             }
         }
         require(validation) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
+    }
+
+    fun validateOrder(menu: List<Map<Menu, Int>>) {
+        require(menu.flatMap { it.entries }.size != menu[DRINK_INDEX].size) { "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요." }
     }
 }

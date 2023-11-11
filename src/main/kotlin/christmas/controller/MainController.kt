@@ -21,8 +21,7 @@ class MainController(private val inputView: InputView, private val outputView: O
     fun run() {
         date = readTodayDate()
 
-        val orders = getOrderMenu()
-        order = Order(orders)
+        order = getOrderMenu()
         printOrder()
 
         outputView.printGift(order)
@@ -63,11 +62,12 @@ class MainController(private val inputView: InputView, private val outputView: O
         }
     }
 
-    private fun getOrderMenu(): List<Map<Menu, Int>> {
+    private fun getOrderMenu(): Order {
         while (true) {
             try {
                 val inputMenu = inputView.readOrder()
-                return splitInputMenu(inputMenu)
+                val splitMenu = splitInputMenu(inputMenu)
+                return Order(splitMenu)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
