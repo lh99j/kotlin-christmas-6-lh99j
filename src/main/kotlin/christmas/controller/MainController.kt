@@ -71,7 +71,7 @@ class MainController(private val inputView: InputView, private val outputView: O
     }
 
     private fun printOrder() {
-        outputView.printPreviewMessage()
+        outputView.printPreviewMessage(date)
         outputView.printMenu(order)
         outputView.printTotalPrice(order)
     }
