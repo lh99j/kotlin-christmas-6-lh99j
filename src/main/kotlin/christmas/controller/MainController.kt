@@ -32,6 +32,8 @@ class MainController(private val inputView: InputView, private val outputView: O
         calculateDiscount()
         outputView.printBenefits(benefits)
         outputView.printTotalBenefits(benefits)
+        val finalPrice = getPriceAfterDiscount()
+        outputView.printPriceAfterDiscount(finalPrice)
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<Map<Menu, Int>> {
@@ -130,4 +132,8 @@ class MainController(private val inputView: InputView, private val outputView: O
             benefits.addHistory(GIFT_DISCOUNT, price)
         }
     }
+
+    private fun getPriceAfterDiscount(): Int =
+        order.getTotalPrice() - benefits.getTotalDiscount()
+
 }

@@ -59,5 +59,10 @@ class OutputView {
         println()
     }
 
+    fun printPriceAfterDiscount(price: Int) {
+        println("<할인 후 예상 결제 금액>")
+        println(if (price > 0) price.format() else "0원")
+    }
+
     private fun Int.format(): String = String.format("%,d", this)
 }
