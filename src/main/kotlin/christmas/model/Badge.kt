@@ -7,6 +7,6 @@ enum class Badge(private val type: String, private val price: Int) {
     NOTHING("없음", 0);
 
     companion object {
-        fun getType(price: Int): String = values().first { price > it.price }.type
+        fun getType(price: Int): String = values().first { price >= it.price }.type
     }
 }
