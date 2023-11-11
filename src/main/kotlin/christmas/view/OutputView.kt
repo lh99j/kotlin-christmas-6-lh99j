@@ -28,4 +28,15 @@ class OutputView {
         println(price)
         println()
     }
+
+    fun printGift(order: Order) {
+        val price = order.getTotalPrice()
+        println("<증정 메뉴>")
+        if (price >= 120_000) {
+            println("샴페인 1개")
+        } else {
+            println("없음")
+        }
+        println()
+    }
 }
