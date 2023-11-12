@@ -5,6 +5,11 @@ import christmas.model.Order
 import christmas.model.data.Menu
 import christmas.model.data.OrderForm
 import christmas.model.discount.*
+import christmas.util.Constants.DDAY_DISCOUNT
+import christmas.util.Constants.GIFT_DISCOUNT
+import christmas.util.Constants.SPECIAL_DISCOUNT
+import christmas.util.Constants.WEEKDAY_DISCOUNT
+import christmas.util.Constants.WEEKEND_DISCOUNT
 import christmas.view.InputView
 import christmas.view.OutputView
 import java.lang.IllegalArgumentException
@@ -112,11 +117,6 @@ class MainController(private val inputView: InputView, private val outputView: O
     }
 
     companion object {
-        private const val DDAY_DISCOUNT = "크리스마스 디데이 할인"
-        private const val WEEKDAY_DISCOUNT = "평일 할인"
-        private const val WEEKEND_DISCOUNT = "주말 할인"
-        private const val SPECIAL_DISCOUNT = "특별 할인"
-        private const val GIFT_DISCOUNT = "증정 이벤트"
         const val DISCOUNT_MIN_PRICE = 10_000
         const val FOOD_CATEGORY_SIZE = 4
     }
