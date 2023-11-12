@@ -7,6 +7,7 @@ import christmas.model.data.OrderForm
 import christmas.model.discount.*
 import christmas.util.Constants.DDAY_DISCOUNT
 import christmas.util.Constants.DISCOUNT_MIN_PRICE
+import christmas.util.Constants.FOOD_CATEGORY_SIZE
 import christmas.util.Constants.GIFT_DISCOUNT
 import christmas.util.Constants.SPECIAL_DISCOUNT
 import christmas.util.Constants.WEEKDAY_DISCOUNT
@@ -34,20 +35,6 @@ class MainController(private val inputView: InputView, private val outputView: O
         displayBadgeType()
     }
 
-    private fun splitInputMenu(inputMenu: List<String>): List<List<OrderForm>> {
-        val result: MutableList<MutableList<OrderForm>> = MutableList(4) { mutableListOf() }
-
-        inputMenu.forEach {
-            val (name, count) = it.split("-")
-            menuBoard.validateMenu(name)
-            val price = menuBoard.getMenuPrice(name)
-            val category = menuBoard.getFoodCategory(name)
-            result[category].add(OrderForm(Menu(name, price), count.toInt()))
-        }
-
-        return result
-    }
-
     private fun readTodayDate(): Int {
         outputView.printGreetings()
         while (true) {
@@ -63,12 +50,25 @@ class MainController(private val inputView: InputView, private val outputView: O
         while (true) {
             try {
                 val inputMenu = inputView.readOrder()
-                val splitMenu = splitInputMenu(inputMenu)
-                return Order(splitMenu)
+                return makeOrder(inputMenu)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
+    }
+
+    private fun makeOrder(inputMenu: List<String>): Order {
+        val result: MutableList<MutableList<OrderForm>> = MutableList(FOOD_CATEGORY_SIZE) { mutableListOf() }
+
+        inputMenu.forEach {
+            val (name, count) = it.split("-")
+            menuBoard.validateMenu(name)
+            val price = menuBoard.getMenuPrice(name)
+            val category = menuBoard.getFoodCategory(name)
+            result[category].add(OrderForm(Menu(name, price), count.toInt()))
+        }
+
+        return Order(result)
     }
 
     private fun displayOrderInformation() {
@@ -77,21 +77,24 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printTotalPrice(order)
     }
 
-    private fun displayBenefitsInformation(){
+    private fun displayBenefitsInformation() {
         outputView.printGift(order)
         outputView.printBenefits(benefits)
         outputView.printTotalBenefits(benefits)
     }
 
-    private fun displayFinalPurchasePrice(){
+    private fun displayFinalPurchasePrice() {
         val finalPrice = getPriceAfterDiscount()
         outputView.printPriceAfterDiscount(finalPrice)
     }
 
-    private fun displayBadgeType(){
+    private fun displayBadgeType() {
         val totalBenefits = benefits.getTotalBenefit()
         outputView.printBadgeType(Badge.getType(totalBenefits))
     }
+
+    private fun getPriceAfterDiscount(): Int =
+        order.getTotalPrice() - benefits.getTotalDiscount()
 
     private fun applyBenefits() {
         if (order.getTotalPrice() >= DISCOUNT_MIN_PRICE) {
@@ -114,8 +117,4 @@ class MainController(private val inputView: InputView, private val outputView: O
             benefits.addHistory(discountType, price)
         }
     }
-
-    private fun getPriceAfterDiscount(): Int =
-        order.getTotalPrice() - benefits.getTotalDiscount()
-
 }

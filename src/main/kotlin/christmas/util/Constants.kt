@@ -23,4 +23,5 @@ object Constants {
     const val MAX_ORDER_COUNT = 20
     const val SPLIT_SIZE = 2
     const val COUNT_INDEX = 1
+    const val FOOD_CATEGORY_SIZE = 4
 }
