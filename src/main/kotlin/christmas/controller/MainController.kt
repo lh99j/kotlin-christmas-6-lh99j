@@ -30,12 +30,8 @@ class MainController(private val inputView: InputView, private val outputView: O
         displayOrderInformation()
         applyBenefits()
         displayBenefitsInformation()
-
-        val finalPrice = getPriceAfterDiscount()
-        outputView.printPriceAfterDiscount(finalPrice)
-
-        val totalBenefits = benefits.getTotalBenefit()
-        outputView.printBadgeType(Badge.getType(totalBenefits))
+        displayFinalPurchasePrice()
+        displayBadgeType()
     }
 
     private fun splitInputMenu(inputMenu: List<String>): List<List<OrderForm>> {
@@ -85,6 +81,16 @@ class MainController(private val inputView: InputView, private val outputView: O
         outputView.printGift(order)
         outputView.printBenefits(benefits)
         outputView.printTotalBenefits(benefits)
+    }
+
+    private fun displayFinalPurchasePrice(){
+        val finalPrice = getPriceAfterDiscount()
+        outputView.printPriceAfterDiscount(finalPrice)
+    }
+
+    private fun displayBadgeType(){
+        val totalBenefits = benefits.getTotalBenefit()
+        outputView.printBadgeType(Badge.getType(totalBenefits))
     }
 
     private fun applyBenefits() {
