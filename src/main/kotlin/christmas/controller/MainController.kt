@@ -27,12 +27,9 @@ class MainController(private val inputView: InputView, private val outputView: O
     }
 
     fun run() {
-        printOrder()
-
-        outputView.printGift(order)
-        calculateDiscount()
-        outputView.printBenefits(benefits)
-        outputView.printTotalBenefits(benefits)
+        displayOrderInformation()
+        applyBenefits()
+        displayBenefitsInformation()
 
         val finalPrice = getPriceAfterDiscount()
         outputView.printPriceAfterDiscount(finalPrice)
@@ -78,23 +75,33 @@ class MainController(private val inputView: InputView, private val outputView: O
         }
     }
 
-    private fun printOrder() {
+    private fun displayOrderInformation() {
         outputView.printPreviewMessage(date)
         outputView.printMenu(order)
         outputView.printTotalPrice(order)
     }
 
-    private fun calculateDiscount() {
+    private fun displayBenefitsInformation(){
+        outputView.printGift(order)
+        outputView.printBenefits(benefits)
+        outputView.printTotalBenefits(benefits)
+    }
+
+    private fun applyBenefits() {
         if (order.getTotalPrice() >= DISCOUNT_MIN_PRICE) {
-            calculateDiscount(DDayDiscount(date), DDAY_DISCOUNT)
-            calculateDiscount(WeekdayDiscount(order, date), WEEKDAY_DISCOUNT)
-            calculateDiscount(WeekendDiscount(order, date), WEEKEND_DISCOUNT)
-            calculateDiscount(SpecialDiscount(date), SPECIAL_DISCOUNT)
-            calculateDiscount(GiftDiscount(order), GIFT_DISCOUNT)
+            calculateDiscount()
         }
     }
 
-    private fun calculateDiscount(discount: Discount, discountType: String) {
+    private fun calculateDiscount() {
+        addBenefits(DDayDiscount(date), DDAY_DISCOUNT)
+        addBenefits(WeekdayDiscount(order, date), WEEKDAY_DISCOUNT)
+        addBenefits(WeekendDiscount(order, date), WEEKEND_DISCOUNT)
+        addBenefits(SpecialDiscount(date), SPECIAL_DISCOUNT)
+        addBenefits(GiftDiscount(order), GIFT_DISCOUNT)
+    }
+
+    private fun addBenefits(discount: Discount, discountType: String) {
         val valid = discount.checkTarget()
         if (valid) {
             val price = discount.getPrice()
