@@ -43,7 +43,7 @@ class MenuBoard {
     }
 
     fun getMenuPrice(name: String): Int {
-        return foods.flatten().find { menu -> menu.name == name }!!.price
+        return foods.flatten().first { menu -> menu.name == name }.price
     }
 
     fun getFoodCategory(name: String): Int {
