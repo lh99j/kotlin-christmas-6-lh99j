@@ -1,7 +1,5 @@
 package christmas.model
 
-import christmas.util.Constants.GIFT_DISCOUNT
-
 class Benefits {
     private var _history = mutableMapOf<String, Int>()
     val history: Map<String, Int>
@@ -15,4 +13,8 @@ class Benefits {
 
     fun getTotalDiscount(): Int =
         _history.values.sum() - _history.getOrDefault(GIFT_DISCOUNT, 0)
+
+    companion object{
+        private const val GIFT_DISCOUNT = "증정 이벤트"
+    }
 }

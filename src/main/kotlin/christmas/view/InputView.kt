@@ -1,9 +1,9 @@
 package christmas.view
 
 import camp.nextstep.edu.missionutils.Console
-import christmas.util.validator.OrderValidator.validateDateRange
-import christmas.util.validator.OrderValidator.validateInteger
-import christmas.util.validator.OrderValidator.validateNotNull
+import christmas.util.validator.DateValidator.validateDateInteger
+import christmas.util.validator.DateValidator.validateDateNotNull
+import christmas.util.validator.DateValidator.validateDateRange
 import christmas.util.validator.OrderValidator.validateOrderForm
 import christmas.util.validator.OrderValidator.validateOrderNotNull
 
@@ -14,8 +14,8 @@ class InputView {
         println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)")
         val input = userInput()
 
-        validateNotNull(input)
-        validateInteger(input)
+        validateDateNotNull(input)
+        validateDateInteger(input)
         validateDateRange(input)
 
         return input.toInt()

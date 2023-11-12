@@ -1,7 +1,6 @@
 package christmas.model.discount
 
 import christmas.model.Calendar
-import christmas.util.Constants.SPECIAL_DISCOUNT_PRICE
 
 class SpecialDiscount(private val day: Int) : Discount {
     override fun getPrice(): Int = SPECIAL_DISCOUNT_PRICE
@@ -9,5 +8,9 @@ class SpecialDiscount(private val day: Int) : Discount {
     override fun checkTarget(): Boolean {
         val calendar = Calendar()
         return calendar.checkSpecialDay(day)
+    }
+
+    companion object {
+        private const val SPECIAL_DISCOUNT_PRICE = 1_000
     }
 }

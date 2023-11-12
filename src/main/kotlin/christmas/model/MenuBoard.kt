@@ -44,7 +44,7 @@ class MenuBoard {
 
     fun getFoodCategory(name: String): Int {
         return foods.indexOfFirst { menu ->
-            menu.any{
+            menu.any {
                 name == it.name
             }
         }

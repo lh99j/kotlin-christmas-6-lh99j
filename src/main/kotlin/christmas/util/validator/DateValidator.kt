@@ -1,10 +1,9 @@
 package christmas.util.validator
 
-import christmas.util.Constants.MAX_DATE
-import christmas.util.Constants.MIN_DATE
-
 object DateValidator {
     private const val INVALID_DATE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."
+    private const val MIN_DATE = 1
+    private const val MAX_DATE = 31
 
     fun validateDateNotNull(input: String) =
         require(input.trim().isNotEmpty()) { INVALID_DATE }

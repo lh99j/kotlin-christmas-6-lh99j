@@ -2,13 +2,13 @@ package christmas.util.validator
 
 import christmas.model.data.Menu
 import christmas.model.data.OrderForm
-import christmas.util.Constants.COUNT_INDEX
 import christmas.util.Constants.DRINK_INDEX
-import christmas.util.Constants.MAX_ORDER_COUNT
-import christmas.util.Constants.SPLIT_SIZE
 
 object OrderValidator {
     private const val INVALID_ORDER = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."
+    private const val MAX_ORDER_COUNT = 20
+    private const val SPLIT_SIZE = 2
+    private const val COUNT_INDEX = 1
 
     fun validateOrderNotNull(input: List<String>) =
         require(input.all { it.trim().isNotEmpty() }) { INVALID_ORDER }
