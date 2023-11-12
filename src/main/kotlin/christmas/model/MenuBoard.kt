@@ -1,7 +1,7 @@
 package christmas.model
 
 import christmas.model.data.Menu
-import christmas.util.Validator.validateMenuName
+import christmas.util.validator.OrderValidator.validateMenuName
 
 class MenuBoard {
     private val foods: List<List<Menu>>

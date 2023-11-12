@@ -3,14 +3,11 @@ package christmas.util
 import christmas.model.data.Menu
 import christmas.model.Order
 import christmas.model.data.OrderForm
-import christmas.util.Validator.validateDateRange
-import christmas.util.Validator.validateInteger
-import christmas.util.Validator.validateMenuName
-import christmas.util.Validator.validateNotNull
-import christmas.util.Validator.validateOrderCount
-import christmas.util.Validator.validateOrderForm
-import christmas.util.Validator.validateOrderNotNull
-import christmas.util.Validator.validateUniqueOrder
+import christmas.util.validator.OrderValidator.validateMenuName
+import christmas.util.validator.OrderValidator.validateOrderCount
+import christmas.util.validator.OrderValidator.validateOrderForm
+import christmas.util.validator.OrderValidator.validateOrderNotNull
+import christmas.util.validator.OrderValidator.validateUniqueOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -18,7 +15,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class ValidatorTest {
+class OrderValidatorTest {
     private lateinit var order: Order
 
     @BeforeEach
@@ -41,33 +38,6 @@ class ValidatorTest {
             )
         )
         order = Order(input)
-    }
-
-    @ParameterizedTest
-    @DisplayName("공백이나 널값을 입력하면 예외가 발생한다.")
-    @ValueSource(strings = ["", " ", "   "])
-    fun validateNotNullTest(input: String) {
-        assertThrows<IllegalArgumentException> {
-            validateNotNull(input)
-        }
-    }
-
-    @ParameterizedTest
-    @DisplayName("정수가 아닌 값이 들어오면 예외가 발생한다.")
-    @ValueSource(strings = ["abc", "12#", "!@#"])
-    fun validateIntegerTest(input: String) {
-        assertThrows<IllegalArgumentException> {
-            validateInteger(input)
-        }
-    }
-
-    @ParameterizedTest
-    @DisplayName("올바른 범위의 숫자가 아니면 예외가 발생한다.")
-    @ValueSource(strings = ["-1", "32", "0"])
-    fun validateDateRangeTest(input: String) {
-        assertThrows<IllegalArgumentException> {
-            validateDateRange(input)
-        }
     }
 
     @ParameterizedTest

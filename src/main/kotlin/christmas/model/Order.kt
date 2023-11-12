@@ -1,9 +1,9 @@
 package christmas.model
 
 import christmas.model.data.OrderForm
-import christmas.util.Validator.validateNotOnlyDrink
-import christmas.util.Validator.validateOrderCount
-import christmas.util.Validator.validateUniqueOrder
+import christmas.util.validator.OrderValidator.validateNotOnlyDrink
+import christmas.util.validator.OrderValidator.validateOrderCount
+import christmas.util.validator.OrderValidator.validateUniqueOrder
 
 class Order(private val menu: List<List<OrderForm>>) {
     init {

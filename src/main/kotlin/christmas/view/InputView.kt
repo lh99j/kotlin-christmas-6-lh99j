@@ -1,11 +1,11 @@
 package christmas.view
 
 import camp.nextstep.edu.missionutils.Console
-import christmas.util.Validator.validateDateRange
-import christmas.util.Validator.validateInteger
-import christmas.util.Validator.validateNotNull
-import christmas.util.Validator.validateOrderForm
-import christmas.util.Validator.validateOrderNotNull
+import christmas.util.validator.OrderValidator.validateDateRange
+import christmas.util.validator.OrderValidator.validateInteger
+import christmas.util.validator.OrderValidator.validateNotNull
+import christmas.util.validator.OrderValidator.validateOrderForm
+import christmas.util.validator.OrderValidator.validateOrderNotNull
 
 class InputView {
     private fun userInput(): String = Console.readLine()
