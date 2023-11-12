@@ -47,35 +47,10 @@ class MenuBoard {
     }
 
     fun getFoodCategory(name: String): Int {
-        val appetizer = isAppetizer(name)
-        val mainFood = isMainFood(name)
-        val dessert = isDessert(name)
-        val drink = isDrink(name)
-        val trueValues = listOf(appetizer, mainFood, dessert, drink).indexOfFirst { it }
-        return trueValues
-    }
-
-    private fun isAppetizer(name: String): Boolean {
-        return foods[APPETIZER_INDEX].any { menu ->
-            menu.name == name
-        }
-    }
-
-    private fun isMainFood(name: String): Boolean {
-        return foods[MAIN_FOOD_INDEX].any { menu ->
-            menu.name == name
-        }
-    }
-
-    private fun isDessert(name: String): Boolean {
-        return foods[DESSERT_INDEX].any { menu ->
-            menu.name == name
-        }
-    }
-
-    private fun isDrink(name: String): Boolean {
-        return foods[DRINK_INDEX].any { menu ->
-            menu.name == name
+        return foods.indexOfFirst { menu ->
+            menu.any{
+                name == it.name
+            }
         }
     }
 }
