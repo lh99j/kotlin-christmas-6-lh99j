@@ -14,7 +14,6 @@ import christmas.view.OutputView
 import java.lang.IllegalArgumentException
 
 class PromotionController(private val inputView: InputView, private val outputView: OutputView) {
-    private val menuBoard = MenuBoard()
     private val benefits = Benefits()
     private val order: Order
     private val date: Int
