@@ -1,6 +1,5 @@
 package christmas.util
 
-import christmas.model.MenuBoard
 import christmas.model.Order
 import christmas.model.data.Menu
 import christmas.model.data.OrderForm

@@ -1,6 +1,9 @@
 package christmas.model
 
-enum class Badge(private val type: String, private val price: Int) {
+enum class Badge(
+    private val type: String,
+    private val price: Int
+) {
     SANTA("산타", 20_000),
     TREE("트리", 10_000),
     STAR("별", 5_000),

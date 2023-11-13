@@ -5,7 +5,10 @@ import christmas.model.Order
 import christmas.util.Constants.DISCOUNT_PRICE
 import christmas.util.Constants.MAIN_FOOD_INDEX
 
-class WeekendDiscount(private val order: Order, private val day: Int) : Discount {
+class WeekendDiscount(
+    private val order: Order,
+    private val day: Int
+) : Discount {
     override fun getPrice(): Int {
         val orderMenu = order.getMenu()
         val totalCount = orderMenu[MAIN_FOOD_INDEX].sumOf { it.count }

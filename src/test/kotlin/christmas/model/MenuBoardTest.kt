@@ -25,14 +25,20 @@ class MenuBoardTest {
 
     @ParameterizedTest
     @DisplayName("입력 메뉴의 가격을 가져온다.")
-    @CsvSource(value = ["양송이수프:6000", "해산물파스타:35000", "샴페인:25000"], delimiter = ':')
+    @CsvSource(
+        value = ["양송이수프:6_000", "해산물파스타:35_000", "샴페인:25_000", "초코케이크:15_000"],
+        delimiter = ':'
+    )
     fun getMenuPriceTest(input: String, expected: Int) {
         assertThat(menuBoard.getMenuPrice(input)).isEqualTo(expected)
     }
 
     @ParameterizedTest
     @DisplayName("입력 메뉴의 카테고리를 가져온다.")
-    @CsvSource(value = ["양송이수프:$APPETIZER_INDEX", "해산물파스타:$MAIN_FOOD_INDEX", "샴페인:$DRINK_INDEX", "초코케이크:$DESSERT_INDEX"], delimiter = ':')
+    @CsvSource(
+        value = ["양송이수프:$APPETIZER_INDEX", "해산물파스타:$MAIN_FOOD_INDEX", "샴페인:$DRINK_INDEX", "초코케이크:$DESSERT_INDEX"],
+        delimiter = ':'
+    )
     fun getFoodCategoryTest(input: String, expected: Int) {
         assertThat(menuBoard.getFoodCategory(input)).isEqualTo(expected)
     }

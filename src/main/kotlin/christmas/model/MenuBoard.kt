@@ -34,13 +34,12 @@ class MenuBoard {
         foods = listOf(appetizer, mainFood, dessert, drink)
     }
 
-    fun validateMenu(name: String) {
-        validateMenuName(foods, name)
-    }
+    fun validateMenu(name: String) = validateMenuName(foods, name)
 
-    fun getMenuPrice(name: String): Int {
-        return foods.flatten().first { menu -> menu.name == name }.price
-    }
+
+    fun getMenuPrice(name: String): Int =
+        foods.flatten().first { menu -> menu.name == name }.price
+
 
     fun getFoodCategory(name: String): Int {
         return foods.indexOfFirst { menu ->
