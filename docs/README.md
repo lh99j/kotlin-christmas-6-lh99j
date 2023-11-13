@@ -78,6 +78,12 @@
 
 <br>
 
+### FlowChart
+
+<img width="469" alt="promotion_flowchart" src="https://github.com/lh99j/kotlin-christmas-6-lh99j/assets/87519273/b5271f9c-ad8f-48e4-8225-42f9ebcc8803">
+
+<br>
+
 ### 프로젝트 구조
 
 ```
