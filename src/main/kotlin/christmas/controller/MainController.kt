@@ -10,6 +10,7 @@ import christmas.util.Constants.GIFT_DISCOUNT
 import christmas.util.Constants.SPECIAL_DISCOUNT
 import christmas.util.Constants.WEEKDAY_DISCOUNT
 import christmas.util.Constants.WEEKEND_DISCOUNT
+import christmas.util.OrderGenerator
 import christmas.view.InputView
 import christmas.view.OutputView
 import java.lang.IllegalArgumentException
@@ -45,33 +46,16 @@ class MainController(private val inputView: InputView, private val outputView: O
     }
 
     private fun getOrderMenu(): Order {
+        val orderGenerator = OrderGenerator(menuBoard)
         while (true) {
             try {
                 val inputMenu = inputView.readOrder()
-                return makeOrder(inputMenu)
+                return orderGenerator.makeOrder(inputMenu)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
-
-    private fun makeOrder(inputMenu: List<String>): Order {
-        val result: MutableList<MutableList<OrderForm>> = MutableList(FOOD_CATEGORY_SIZE) { mutableListOf() }
-
-        inputMenu.forEach {
-            val (name, count) = it.split("-")
-            menuBoard.validateMenu(name)
-            val price = menuBoard.getMenuPrice(name)
-            val category = menuBoard.getFoodCategory(name)
-            result[category].add(makeOrderForm(name, price, count.toInt()))
-        }
-
-        return Order(result)
-    }
-
-    private fun makeOrderForm(name: String, price: Int, count: Int): OrderForm =
-        OrderForm(Menu(name, price), count)
-
 
     private fun displayOrderInformation() {
         outputView.printPreviewMessage(date)
@@ -122,6 +106,5 @@ class MainController(private val inputView: InputView, private val outputView: O
 
     companion object {
         const val DISCOUNT_MIN_PRICE = 10_000
-        const val FOOD_CATEGORY_SIZE = 4
     }
 }
