@@ -5,7 +5,9 @@ import christmas.model.Order
 import christmas.model.data.Menu
 import christmas.model.data.OrderForm
 
-class OrderGenerator(private val menuBoard: MenuBoard) {
+class OrderGenerator() {
+    private val menuBoard = MenuBoard()
+
     fun makeOrder(inputMenu: List<String>): Order {
         val result: MutableList<MutableList<OrderForm>> =
             MutableList(FOOD_CATEGORY_SIZE) { mutableListOf() }
@@ -28,5 +30,4 @@ class OrderGenerator(private val menuBoard: MenuBoard) {
     companion object {
         const val FOOD_CATEGORY_SIZE = 4
     }
-
 }

@@ -46,7 +46,7 @@ class MainController(private val inputView: InputView, private val outputView: O
     }
 
     private fun getOrderMenu(): Order {
-        val orderGenerator = OrderGenerator(menuBoard)
+        val orderGenerator = OrderGenerator()
         while (true) {
             try {
                 val inputMenu = inputView.readOrder()
