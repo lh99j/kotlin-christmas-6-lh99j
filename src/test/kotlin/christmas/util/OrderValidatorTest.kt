@@ -4,6 +4,7 @@ import christmas.model.data.Menu
 import christmas.model.Order
 import christmas.model.data.OrderForm
 import christmas.util.validator.OrderValidator.validateMenuName
+import christmas.util.validator.OrderValidator.validateNotOnlyDrink
 import christmas.util.validator.OrderValidator.validateOrderCount
 import christmas.util.validator.OrderValidator.validateOrderForm
 import christmas.util.validator.OrderValidator.validateOrderNotNull
@@ -87,7 +88,15 @@ class OrderValidatorTest {
         }
     }
 
-    fun makeDuplicateOrder() {
+    @Test
+    @DisplayName("주문 목록에 음료만 있다면 예외가 발생한다.")
+    fun validateNotOnlyDrinkTest() {
+        assertThrows<IllegalArgumentException> {
+            validateNotOnlyDrink(getOnlyDrinkOrder())
+        }
+    }
+
+    private fun makeDuplicateOrder() {
         val input = listOf(
             listOf(),
             listOf(),
@@ -100,12 +109,24 @@ class OrderValidatorTest {
         order = Order(input)
     }
 
-    fun makeMaxCountOver() {
+    private fun makeMaxCountOver() {
         val input = listOf(
             listOf(
                 OrderForm(Menu("시저샐러드", 8_000), 21)
             )
         )
         order = Order(input)
+    }
+
+    private fun getOnlyDrinkOrder(): List<List<OrderForm>> {
+        return listOf(
+            listOf(),
+            listOf(),
+            listOf(),
+            listOf(
+                OrderForm(Menu("제로콜라", 3_000), 4),
+                OrderForm(Menu("레드와인", 60_000), 4)
+            )
+        )
     }
 }
