@@ -2,6 +2,7 @@ package christmas.model
 
 class Benefits {
     private var _history = mutableMapOf<String, Int>()
+
     val history: Map<String, Int>
         get() = _history
 

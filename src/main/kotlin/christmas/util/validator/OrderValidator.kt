@@ -24,7 +24,6 @@ object OrderValidator {
     fun validateOrderCount(input: List<List<OrderForm>>) =
         require(input.flatten().sumOf { it.count } <= MAX_ORDER_COUNT) { INVALID_ORDER }
 
-
     fun validateMenuName(foods: List<List<Menu>>, input: String) {
         val validation = foods.any { category ->
             category.any { menu ->
@@ -36,7 +35,6 @@ object OrderValidator {
 
     fun validateNotOnlyDrink(menu: List<List<OrderForm>>) =
         require(menu.flatten().size != menu[DRINK_INDEX].size) { INVALID_ORDER }
-
 
     fun validateUniqueOrder(menu: List<List<OrderForm>>) {
         require(
