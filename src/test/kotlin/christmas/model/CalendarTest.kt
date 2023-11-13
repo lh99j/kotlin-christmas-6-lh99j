@@ -10,10 +10,17 @@ class CalendarTest {
     private val calendar = Calendar()
 
     @ParameterizedTest
-    @DisplayName("주어진 날짜가 주말이면 true, 평일이면 false 를 반환한다.")
+    @DisplayName("주어진 날짜가 주말이면 true, 아니면 false 를 반환한다.")
     @CsvSource(value = ["1:true", "14:false", "25:false", "30:true"], delimiter = ':')
     fun checkWeekendTest(input: Int, expected: Boolean) {
         assertThat(calendar.checkWeekend(input)).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @DisplayName("주어진 날짜가 평일이면 true, 아니면 false 를 반환한다.")
+    @CsvSource(value = ["1:false", "14:true", "25:true", "30:false"], delimiter = ':')
+    fun checkWeekdayTest(input: Int, expected: Boolean) {
+        assertThat(calendar.checkWeekday(input)).isEqualTo(expected)
     }
 
     @ParameterizedTest
