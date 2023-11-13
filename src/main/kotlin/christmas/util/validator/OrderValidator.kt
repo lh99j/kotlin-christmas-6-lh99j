@@ -5,7 +5,7 @@ import christmas.model.data.OrderForm
 import christmas.util.Constants.DRINK_INDEX
 
 object OrderValidator {
-    private const val INVALID_ORDER = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."
+    private const val INVALID_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
     private const val MAX_ORDER_COUNT = 20
     private const val SPLIT_SIZE = 2
     private const val COUNT_INDEX = 1
