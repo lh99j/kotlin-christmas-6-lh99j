@@ -12,9 +12,9 @@ class Benefits {
     fun getTotalBenefit(): Int = _history.values.sum()
 
     fun getTotalDiscount(): Int =
-        _history.values.sum() - _history.getOrDefault(GIFT_DISCOUNT, 0)
+        getTotalBenefit() - _history.getOrDefault(GIFT_DISCOUNT, 0)
 
-    companion object{
+    companion object {
         private const val GIFT_DISCOUNT = "증정 이벤트"
     }
 }

@@ -63,11 +63,15 @@ class MainController(private val inputView: InputView, private val outputView: O
             menuBoard.validateMenu(name)
             val price = menuBoard.getMenuPrice(name)
             val category = menuBoard.getFoodCategory(name)
-            result[category].add(OrderForm(Menu(name, price), count.toInt()))
+            result[category].add(makeOrderForm(name, price, count.toInt()))
         }
 
         return Order(result)
     }
+
+    private fun makeOrderForm(name: String, price: Int, count: Int): OrderForm =
+        OrderForm(Menu(name, price), count)
+
 
     private fun displayOrderInformation() {
         outputView.printPreviewMessage(date)
