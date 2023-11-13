@@ -2,8 +2,6 @@ package christmas.controller
 
 import christmas.model.*
 import christmas.model.Order
-import christmas.model.data.Menu
-import christmas.model.data.OrderForm
 import christmas.model.discount.*
 import christmas.util.Constants.DDAY_DISCOUNT
 import christmas.util.Constants.GIFT_DISCOUNT
@@ -15,7 +13,7 @@ import christmas.view.InputView
 import christmas.view.OutputView
 import java.lang.IllegalArgumentException
 
-class MainController(private val inputView: InputView, private val outputView: OutputView) {
+class PromotionController(private val inputView: InputView, private val outputView: OutputView) {
     private val menuBoard = MenuBoard()
     private val benefits = Benefits()
     private val order: Order
