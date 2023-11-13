@@ -4,16 +4,16 @@
 
 - [x]  날짜 입력 안내 메세지를 출력한다. `OutputView#printGreetings()`
 - [x]  방문 날짜를 입력한다. `InputView#readDate()`
-    - [x]  입력이 널값이면 예외 처리한다. `Validator#validateNotNull()`
-    - [x]  입력이 숫자가 아니면 예외 처리한다. `Validator#validateInteger()`
-    - [x]  입력이 1부터 31까지의 숫자가 아니면 예외 처리한다. `Validator#validateDateRange()`
-- [x]  주문 메뉴와 개수를 입력한다. (메뉴-개수) `Validator#validateOrderForm()`
-    - [x]  입력이 주어진 형식이 아니면 예외 처리한다. `Validator#validateOrderNotNull()`
-    - [x]  입력 메뉴가 메뉴판에 없으면 예외 처리한다. `Validator#validateMenuName()`
-    - [x]  메뉴 개수가 숫자가 아니면 예외 처리한다. `Validator#validateOrderForm()`
-    - [x]  총 메뉴 개수가 20개가 넘어가면 예외 처리한다. `Validator#validateOrderCount()`
-    - [x]  중복된 메뉴가 존재하면 예외 처리한다. `Validator#validateUniqueOrder()`
-    - [x]  음료만 주문했는지 확인한다. `Validator#validateNotOnlyDrink()`
+    - [x]  입력이 널값이면 예외 처리한다. `DateValidator#validateDateNotNull()`
+    - [x]  입력이 숫자가 아니면 예외 처리한다. `DateValidator#validateDateInteger()`
+    - [x]  입력이 1부터 31까지의 숫자가 아니면 예외 처리한다. `DateValidator#validateDateRange()`
+- [x]  주문 메뉴와 개수를 입력한다. (메뉴-개수) `OrderValidator#validateOrderForm()`
+    - [x]  입력이 주어진 형식이 아니면 예외 처리한다. `OrderValidator#validateOrderNotNull()`
+    - [x]  입력 메뉴가 메뉴판에 없으면 예외 처리한다. `OrderValidator#validateMenuName()`
+    - [x]  메뉴 개수가 숫자가 아니면 예외 처리한다. `OrderValidator#validateOrderForm()`
+    - [x]  총 메뉴 개수가 20개가 넘어가면 예외 처리한다. `OrderValidator#validateOrderCount()`
+    - [x]  중복된 메뉴가 존재하면 예외 처리한다. `OrderValidator#validateUniqueOrder()`
+    - [x]  음료만 주문했는지 확인한다. `OrderValidator#validateNotOnlyDrink()`
 - [x]  주문 메뉴를 출력한다. `OutputView#printMenu()`
 
 • 할인 전 총 주문 금액
@@ -61,18 +61,17 @@
 
 ### 기능 요구 사항
 
-- [ ]  **Java 코드가 아닌 Kotlin 코드로만 구현해야 한다.**
-- [ ]  프로그램 종료 시 `System.exit()`를 호출하지 않는다.
+- [x]  **Java 코드가 아닌 Kotlin 코드로만 구현해야 한다.**
+- [x]  프로그램 종료 시 `System.exit()`를 호출하지 않는다.
 - [ ]  Kotlin 코드 컨벤션 가이드를 준수하며 프로그래밍한다.
-- [ ]  프로그램 종료 시 `System.exit()`를 호출하지 않는다.
-- [ ]  프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다.
-- [ ]  프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
+- [x]  프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다.
+- [x]  프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
 - [ ]  indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
 - [ ]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - [ ]  JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
 - [ ]  else를 지양한다.
 - [ ]  도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, [System.in](http://system.in/), Scanner) 로직은 제외한다.
-- [ ]  핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-- [ ]  사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [ ]  `InputView`, `OutputView` 클래스를 참고하여 입출력 클래스를 구현한다.
-- [ ]  사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+- [x]  핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
+- [x]  사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x]  `InputView`, `OutputView` 클래스를 참고하여 입출력 클래스를 구현한다.
+- [x]  사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
