@@ -1,4 +1,4 @@
-package christmas.util
+package christmas.util.validator
 
 import christmas.util.validator.DateValidator.validateDateRange
 import christmas.util.validator.DateValidator.validateDateInteger

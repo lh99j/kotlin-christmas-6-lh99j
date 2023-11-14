@@ -1,8 +1,9 @@
-package christmas.util
+package christmas.util.validator
 
 import christmas.model.Order
 import christmas.model.data.Menu
 import christmas.model.data.OrderForm
+import christmas.util.OrderGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
