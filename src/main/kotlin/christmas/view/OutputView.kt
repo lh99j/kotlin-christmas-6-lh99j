@@ -33,7 +33,7 @@ class OutputView {
     fun printGift(order: Order) {
         val price = order.getTotalPrice()
         println("<증정 메뉴>")
-        println(if (price >= 120_000) "샴페인 1개" else "없음")
+        println(if (price >= GIFT_PRICE) "샴페인 1개" else "없음")
         println()
     }
 
@@ -51,7 +51,7 @@ class OutputView {
     fun printTotalBenefits(benefits: Benefits) {
         println("<총혜택 금액>")
         val totalBenefits = benefits.getTotalBenefit()
-        println(if (totalBenefits > 0) totalBenefits.formatWithSign() else "0원")
+        println(if (totalBenefits > ZERO_PRICE) totalBenefits.formatWithSign() else "0원")
         println()
     }
 
@@ -69,4 +69,8 @@ class OutputView {
     private fun Int.formatWithSign(): String = String.format("-%,d원", this)
     private fun Int.formatWithoutSign(): String = String.format("%,d원", this)
 
+    companion object {
+        const val ZERO_PRICE = 0
+        const val GIFT_PRICE = 120_000
+    }
 }
