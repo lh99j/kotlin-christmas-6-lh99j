@@ -3,6 +3,7 @@ package christmas.util.validator
 import christmas.model.data.Menu
 import christmas.model.data.OrderForm
 import christmas.util.Constants.DRINK_INDEX
+import christmas.util.Constants.MENU_DELIMITER
 
 object OrderValidator {
     private const val INVALID_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
@@ -15,7 +16,7 @@ object OrderValidator {
 
     fun validateOrderForm(input: List<String>) {
         input.forEach {
-            val splitInput = it.split("-")
+            val splitInput = it.split(MENU_DELIMITER)
             require(splitInput.size == SPLIT_SIZE) { INVALID_ORDER }
             require(splitInput[COUNT_INDEX].toIntOrNull() != null) { INVALID_ORDER }
         }

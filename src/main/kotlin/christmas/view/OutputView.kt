@@ -33,14 +33,14 @@ class OutputView {
     fun printGift(order: Order) {
         val price = order.getTotalPrice()
         println("<증정 메뉴>")
-        println(if (price >= GIFT_PRICE) "샴페인 1개" else "없음")
+        println(if (price >= GIFT_PRICE) GIFT else NOT_BENEFIT)
         println()
     }
 
     fun printBenefits(benefits: Benefits) {
         println("<혜택 내역>")
         if (benefits.history.isEmpty()) {
-            println("없음")
+            println(NOT_BENEFIT)
         }
         benefits.history.forEach { (type, price) ->
             println("${type}: ${price.formatWithSign()}")
@@ -51,7 +51,7 @@ class OutputView {
     fun printTotalBenefits(benefits: Benefits) {
         println("<총혜택 금액>")
         val totalBenefits = benefits.getTotalBenefit()
-        println(if (totalBenefits > ZERO_PRICE) totalBenefits.formatWithSign() else "0원")
+        println(if (totalBenefits > ZERO_PRICE) totalBenefits.formatWithSign() else NOT_DISCOUNT)
         println()
     }
 
@@ -72,5 +72,8 @@ class OutputView {
     companion object {
         const val ZERO_PRICE = 0
         const val GIFT_PRICE = 120_000
+        const val NOT_DISCOUNT = "0원"
+        const val NOT_BENEFIT = "없음"
+        const val GIFT = "샴페인 1개"
     }
 }

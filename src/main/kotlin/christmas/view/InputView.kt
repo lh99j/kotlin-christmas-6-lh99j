@@ -1,6 +1,7 @@
 package christmas.view
 
 import camp.nextstep.edu.missionutils.Console
+import christmas.util.Constants.ORDER_DELIMITER
 import christmas.util.validator.DateValidator.validateDateInteger
 import christmas.util.validator.DateValidator.validateDateNotNull
 import christmas.util.validator.DateValidator.validateDateRange
@@ -23,12 +24,11 @@ class InputView {
 
     fun readOrder(): List<String> {
         println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)")
-        val input = userInput().split(",")
+        val input = userInput().split(ORDER_DELIMITER)
 
         validateOrderNotNull(input)
         validateOrderForm(input)
 
         return input
     }
-
 }

@@ -13,4 +13,7 @@ object Constants {
     const val WEEKEND_DISCOUNT = "주말 할인"
     const val SPECIAL_DISCOUNT = "특별 할인"
     const val GIFT_DISCOUNT = "증정 이벤트"
+
+    const val MENU_DELIMITER = "-"
+    const val ORDER_DELIMITER = ","
 }
